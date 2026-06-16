@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="../static/styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="../static/img/senac-logo.png" alt="Logo Senac">
+        </div>
+        <div class="card">
+            <h1 th:text ="${tituloPagina}">Cadastro</h1>
+            <p th:text ="${subTituloPagina}">Sistema de Gerenciamento de Estoque de Cozinha</p>
+
+
+            <form>
+
+                <label for="nome">Nome Completo</label>
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Digite seu nome"
+                    required
+                >
+
+                <label for="email">E-mail</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Digite seu e-mail"
+                    required
+                >
+
+                <label for="senha">Senha</label>
+                <input
+                    type="password"
+                    id="senha"
+                    placeholder="Digite sua senha"
+                    required
+                >
+
+                <label for="confirmar">Confirmar Senha</label>
+                <input
+                    type="password"
+                    id="confirmar"
+                    placeholder="Confirme sua senha"
+                    required
+                >
+
+                <button type="submit">
+                    Cadastrar
+                </button>
+            <div class="links">
+                <a href="login.html">Já possui uma conta? Entrar</a>
+            </div>
+            </form>
+        </div>
+    </div>
+    <script src="../static/scripts/script.js"></script>
+</body>
+</html>
