@@ -17,5 +17,5 @@ public class UsuarioController {
 
         return "cadastro";
     }
-    
+
 }
