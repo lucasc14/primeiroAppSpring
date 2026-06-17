@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class UsuarioController {
-    @GetMapping("/")
+    @GetMapping("/cadastro")
     public String exibirCadastro(Model model) {
         model.addAttribute("usuarioForm", new UsuarioForm());
         model.addAttribute("tituloPagina", "Cadastro");
@@ -17,5 +17,21 @@ public class UsuarioController {
 
         return "cadastro";
     }
+    @GetMapping("/login")
+    public String exibirLogin(Model model) {
+        model.addAttribute("usuarioForm", new UsuarioForm());
+        model.addAttribute("tituloPagina", "Login");
 
+
+        return "login";
+    }
+
+    @GetMapping("/alterarSenha")
+    public String exibirAlterarSenha(Model model) {
+        model.addAttribute("usuarioForm", new UsuarioForm());
+        model.addAttribute("tituloPagina", "Aterar senha");
+
+
+        return "alterarSenha";
+    }
 }

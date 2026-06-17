@@ -1,32 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AlterarSenha</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alterar Senha - SIGEC</title>
-    <link rel="stylesheet" href="../static/styles/style.css">
-</head>
+
 <body>
 
     <div class="container">
 
         <div class="logo">
-            <img src="../static/img/senac-logo.png" alt="Logo Senac">
+            <img src="/img/senac-logo.png" alt="Logo Senac">
         </div>
 
         <div class="card">
 
-            <h1>Alterar Senha</h1>
+            <h1 th:text ="${tituloPagina}">Alterar Senha</h1>
             <p>Informe seus dados para redefinir sua senha.</p>
 
             <form>
@@ -50,12 +42,10 @@
             </form>
 
             <div class="links">
-                <a href="login.html">Voltar para Login</a>
+                <a href="/login">Voltar para Login</a>
             </div>
         </div>
     </div>
     <script src="../static/scripts/script.js"></script>
-</body>
-</html>
 </body>
 </html>
