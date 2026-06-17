@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - SIGEC</title>
-    <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
 </head>
 <body>
     <div class="container">
         <div class="logo">
-            <img src="../static/img/senac-logo.png" alt="Logo Senac">
+            <img src="/img/senac-logo.png" alt="Logo Senac">
         </div>
         <div class="card">
-            <h1>Bem-vindo</h1>
+            <h1 th:text ="${tituloPagina}">Bem-vindo</h1>
             <p>Sistema de Gerenciamento de Estoque de Cozinha</p>
              
             <form>
@@ -40,8 +40,8 @@
             </form>
 
             <div class="links">
-                <a href="alterarSenha.html">Esqueceu a senha?</a>
-                <a href="cadastro.html">Criar conta</a>
+                <a href="/alterarSenha">Esqueceu a senha?</a>
+                <a href="/cadastro">Criar conta</a>
             </div>
         </div>
     </div>
