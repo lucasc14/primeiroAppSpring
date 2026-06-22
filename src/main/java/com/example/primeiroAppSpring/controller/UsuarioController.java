@@ -45,12 +45,12 @@ public class UsuarioController {
 
     @PostMapping("/login")
     public String processarLogin(@ModelAttribute UsuarioForm form, Model model) {
-        if (form.getEmail().endsWith("@df.senac.br")) {
-            model.addAttribute("erro", "Erro, as senhas não conferem !");
-            return "redirect:/home";
+        if (!form.getEmail().endsWith("@df.senac.br")) {
+            model.addAttribute("erro", "Erro, E-mail ou senha invalidas!");
+            return "login";
         }
         model.addAttribute("erro","E-mail ou senha inválidos!" );
-        return "login";
+        return "redirect:/home";
     }
 
 
@@ -80,6 +80,6 @@ public class UsuarioController {
         model.addAttribute("tituloPagina", "SIGEC");
         model.addAttribute("subTituloPagina", "Sistema de Gerenciamneto de Estoque da Cozinha");
 
-        return "home";
+        return "Home";
     }
 }
