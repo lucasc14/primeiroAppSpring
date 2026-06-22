@@ -24,7 +24,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/cadastro")
-    public String processarUsuario(@ModelAttribute UsuarioForm form, Model model) {
+    public String processarCadastro(@ModelAttribute UsuarioForm form, Model model) {
         if (!form.getSenha().equals(form.getConfirmaSenha())){
             model.addAttribute("erro", "Erro, as senhas não conferem !");
             return "cadastro";
@@ -33,6 +33,7 @@ public class UsuarioController {
         IO.println(form.getNome()+ " "+form.getSenha());
         return "redirect:/login";
     }
+
     @GetMapping("/login")
     public String exibirLogin(Model model) {
         model.addAttribute("usuarioForm", new UsuarioForm());
@@ -41,6 +42,17 @@ public class UsuarioController {
 
         return "login";
     }
+
+    @PostMapping("/login")
+    public String processarLogin(@ModelAttribute UsuarioForm form, Model model) {
+        if (form.getEmail().endsWith("@df.senac.br")) {
+            model.addAttribute("erro", "Erro, as senhas não conferem !");
+            return "redirect:/home";
+        }
+        model.addAttribute("erro","E-mail ou senha inválidos!" );
+        return "login";
+    }
+
 
     @GetMapping("/alterarSenha")
     public String exibirAlterarSenha(Model model) {
@@ -51,5 +63,23 @@ public class UsuarioController {
         return "alterarSenha";
     }
 
-    
+    @PostMapping("/alterarSenha")
+    public String processarAlterarSenha(@ModelAttribute UsuarioForm form, Model model) {
+        if (!form.getSenha().equals(form.getConfirmaSenha())){
+            model.addAttribute("erro", "Erro, as senhas não conferem !");
+            return "alterarSenha";
+        }
+        IO.println("Senha alterada com sucesso");
+        model.addAttribute("erro", "Senha alterada com sucesso!");
+        return "redirect:/login";
+    }
+
+    @GetMapping("/home")
+    public String exibirHome(Model model) {
+        model.addAttribute("usuarioForm", new UsuarioForm());
+        model.addAttribute("tituloPagina", "SIGEC");
+        model.addAttribute("subTituloPagina", "Sistema de Gerenciamneto de Estoque da Cozinha");
+
+        return "home";
+    }
 }
