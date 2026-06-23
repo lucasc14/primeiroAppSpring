@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
-    @GetMapping ("/")
+    @GetMapping ("/helloword")
     public String exibirMensagem() {
         return "<h1>Hello Word</h1>" +
                 "<p>Meu primeiro app Spring Boot.</p>";

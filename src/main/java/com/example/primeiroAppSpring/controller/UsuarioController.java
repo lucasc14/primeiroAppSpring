@@ -31,10 +31,10 @@ public class UsuarioController {
         }
         IO.println("Usuário criado com sucesso");
         IO.println(form.getNome()+ " "+form.getSenha());
-        return "redirect:/login";
+        return "redirect:/";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/")
     public String exibirLogin(Model model) {
         model.addAttribute("usuarioForm", new UsuarioForm());
         model.addAttribute("tituloPagina", "Login");
@@ -71,7 +71,7 @@ public class UsuarioController {
         }
         IO.println("Senha alterada com sucesso");
         model.addAttribute("erro", "Senha alterada com sucesso!");
-        return "redirect:/login";
+        return "redirect:/";
     }
 
     @GetMapping("/home")
