@@ -26,7 +26,9 @@
     <a href="#" class="nav-item"><span class="material-symbols-outlined">menu_book</span><span>Receitas</span></a>
   </nav>
   <div class="sidebar-footer">
-    <button class="btn-logout"><span class="material-symbols-outlined">logout</span>Sair</button>
+    <button class="btn-logout" th:onclick="|window.location.href='@{/login}'|">
+      <span class="material-symbols-outlined">logout</span>Sair
+    </button>
   </div>
 </aside>
 
