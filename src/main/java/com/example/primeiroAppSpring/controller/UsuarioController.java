@@ -36,8 +36,11 @@ public class UsuarioController {
         if (erro != null) {
             model.addAttribute("erro", erro);
             model.addAttribute("usuarioForm", form);//mantem os dados do formulario
+            model.addAttribute("tituloPagina", "Cadastro");
+            model.addAttribute("subTituloPagina", "Sistema de Gerenciamento de Estoque da Cozinha");
+            return "cadastro";
         }
-        return "redirect:/login";
+        return "redirect:/";
     }
 
     @GetMapping("/")
