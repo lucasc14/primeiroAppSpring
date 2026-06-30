@@ -1,6 +1,7 @@
 package com.example.primeiroAppSpring.controller;
 
 import com.example.primeiroAppSpring.model.UsuarioForm;
+import com.example.primeiroAppSpring.service.UsuarioService;
 import org.springframework.boot.context.properties.source.ConfigurationPropertyName;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,12 @@ import java.text.Normalizer;
 @Controller
 @RequestMapping("/")
 public class UsuarioController {
+    private final UsuarioService usuarioService;
+
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
+
     @GetMapping("/cadastro")
     public String exibirCadastro(Model model) {
         model.addAttribute("usuarioForm", new UsuarioForm());
@@ -25,13 +32,12 @@ public class UsuarioController {
 
     @PostMapping("/cadastro")
     public String processarCadastro(@ModelAttribute UsuarioForm form, Model model) {
-        if (!form.getSenha().equals(form.getConfirmaSenha())){
-            model.addAttribute("erro", "Erro, as senhas não conferem !");
-            return "cadastro";
+        String erro = usuarioService.cadastrar(form);
+        if (erro != null) {
+            model.addAttribute("erro", erro);
+            model.addAttribute("usuarioForm", form);//mantem os dados do formulario
         }
-        IO.println("Usuário criado com sucesso");
-        IO.println(form.getNome()+ " "+form.getSenha());
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @GetMapping("/")
