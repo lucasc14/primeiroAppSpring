@@ -6,6 +6,10 @@ import com.example.primeiroAppSpring.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -35,5 +39,15 @@ public class UsuarioService {
         return null;
     }
 
+
+    // METODO: LOGIN
+
+    public Usuario autenticar( String email, String senha) {
+        Optional<Usuario> resultado = usuarioRepository.findByEmail(email);
+        if(resultado.isEmpty()){
+            return null;
+        }
+        return null;
+    }
 
 }
