@@ -59,10 +59,19 @@ public class UsuarioService {
 
     // METODO : ALTERAR SENHA
 
-   /* public String alterarSenha(UsuarioForm form) {
+    public String alterarSenha(UsuarioForm form) {
         if (!form.getSenha().equals(form.getConfirmaSenha())){
             return "As senhas não conferem!";
         }
-    }*/
+       Optional<Usuario> resultado = usuarioRepository.findByEmail(form.getEmail());
+        if (resultado.isEmpty()){
+            return "E-mail não encontrado no sistema!";
+        }
+        Usuario usuario = resultado.get();
+        usuario.setSenha(encoder.encode(form.getSenha()));
+        usuarioRepository.save(usuario);
+
+        return null;
+    }
 
 }
