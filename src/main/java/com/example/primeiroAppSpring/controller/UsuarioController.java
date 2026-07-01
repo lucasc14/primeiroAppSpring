@@ -1,5 +1,6 @@
 package com.example.primeiroAppSpring.controller;
 
+import com.example.primeiroAppSpring.model.Usuario;
 import com.example.primeiroAppSpring.model.UsuarioForm;
 import com.example.primeiroAppSpring.service.UsuarioService;
 import org.springframework.boot.context.properties.source.ConfigurationPropertyName;
@@ -54,11 +55,12 @@ public class UsuarioController {
 
     @PostMapping("/login")
     public String processarLogin(@ModelAttribute UsuarioForm form, Model model) {
-        if (!form.getEmail().endsWith("@df.senac.br")) {
-            model.addAttribute("erro", "Erro, E-mail ou senha invalidas!");
+        Usuario usuario = usuarioService.autenticar(form.getEmail(), form.getSenha());
+        if (usuario == null) {
+            model.addAttribute("erro","Email ou senha incorreto!");
             return "login";
         }
-        model.addAttribute("erro","E-mail ou senha inválidos!" );
+
         return "redirect:/home";
     }
 

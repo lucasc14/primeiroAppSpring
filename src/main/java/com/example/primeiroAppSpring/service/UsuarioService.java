@@ -29,6 +29,9 @@ public class UsuarioService {
         if (usuarioRepository.existsByEmail(form.getEmail())){
             return "Email já cadastrado no sistema!";
         }
+        if(!form.getEmail().endsWith("@df.senac.br")){
+            return "E-mail não valido. Insira um e-mail @df.senac.br ";
+        }
 
         String senhaCriptografada = encoder.encode(form.getSenha());
 
@@ -44,10 +47,22 @@ public class UsuarioService {
 
     public Usuario autenticar( String email, String senha) {
         Optional<Usuario> resultado = usuarioRepository.findByEmail(email);
-        if(resultado.isEmpty()){
+        if (resultado.isEmpty()){
             return null;
         }
-        return null;
+        Usuario usuario = resultado.get();
+        if (!encoder.matches(senha, usuario.getSenha())){
+            return null;
+        }
+        return usuario;
     }
+
+    // METODO : ALTERAR SENHA
+
+   /* public String alterarSenha(UsuarioForm form) {
+        if (!form.getSenha().equals(form.getConfirmaSenha())){
+            return "As senhas não conferem!";
+        }
+    }*/
 
 }
